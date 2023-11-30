@@ -84,6 +84,13 @@ const config = {
 			name: "Always Show Friends List Username",
 			note: "Force Discord to always display usernames next to display names in friends list. Turn off for default Discord behavior (only show on hover).",
 			value: true
+		},
+		{
+			type: "textbox",
+			id: "handlecolor",
+			name: "Username Color",
+			note: "CSS format, hexadecimal or rgb(a)",
+			value: "rgb(201, 209, 217)"
 		}
 	]
 };
@@ -155,6 +162,7 @@ module.exports = !global.ZeresPluginLibrary ? class {
 					else
 						Patcher.unpatchAll();	// Change this if I add more patches to plugin
 					break;
+				case "handlecolor":
 				case "profilecard":
 				case "friendslist":
 					// Reload CSS
@@ -179,6 +187,7 @@ module.exports = !global.ZeresPluginLibrary ? class {
 				.hg-username-handle {
 					margin-left: 0.25rem;
 					font-size: 0.75rem;
+					color: ${this.settings.handlecolor};
 				}
 				/* seperator dot */
 				.hg-username-handle::after {
